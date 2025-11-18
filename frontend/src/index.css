@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #000000;
+  --fg: #FFFFFF;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.button-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-md bg-gold text-black font-semibold hover:brightness-110 transition shadow-lg;
+}
+.button-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-md border border-white/20 text-white hover:bg-white/10 transition;
+}
+.container-max {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+.section {
+  @apply py-16 sm:py-20 lg:py-28;
+}
+.section-title {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-poppins font-extrabold tracking-tight;
+}
+.section-subtitle {
+  @apply mt-4 text-base sm:text-lg text-white/70 max-w-3xl;
+}
+.card {
+  @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 hover:bg-white/10 transition;
+}
