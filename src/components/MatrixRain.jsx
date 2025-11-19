@@ -23,7 +23,7 @@ export default function MatrixRain({ opacity = 0.2, speed = 50, color = '#10b981
       canvas.style.height = innerHeight + 'px'
       ctx.setTransform(1, 0, 0, 1, 0, 0) // reset before scaling
       ctx.scale(dpr, dpr)
-      const fontSize = Math.max(12, Math.min(18, Math.floor(innerWidth / 90)))
+      const fontSize = Math.max(16, Math.min(22, Math.floor(innerWidth / 70)))
       configRef.current.fontSize = fontSize
       const columns = Math.floor(innerWidth / fontSize)
       configRef.current.columns = columns
@@ -36,9 +36,9 @@ export default function MatrixRain({ opacity = 0.2, speed = 50, color = '#10b981
     let frame = 0
     const draw = () => {
       const { fontSize, columns, drops } = configRef.current
-      // gentle fade for trails
-      ctx.fillStyle = `rgba(0,0,0,${Math.min(0.08 + opacity * 0.6, 0.18)})`
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      // gentle fade for trails (use CSS pixel dims after scaling)
+      ctx.fillStyle = `rgba(0,0,0,${Math.min(0.06 + opacity * 0.5, 0.16)})`
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
       ctx.fillStyle = color
       ctx.font = `${fontSize}px monospace`
@@ -56,9 +56,8 @@ export default function MatrixRain({ opacity = 0.2, speed = 50, color = '#10b981
           if (y > window.innerHeight && Math.random() > 0.985) {
             drops[i] = 0
           }
-          // small chance to pause a stream
           if (Math.random() > 0.98) {
-            // no increment for a soft jitter effect
+            // soft jitter pause
           } else {
             drops[i] += 1
           }
@@ -85,7 +84,7 @@ export default function MatrixRain({ opacity = 0.2, speed = 50, color = '#10b981
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 mix-blend-soft-light"
+      className="pointer-events-none fixed inset-0 z-0 mix-blend-screen"
       aria-hidden
     />
   )

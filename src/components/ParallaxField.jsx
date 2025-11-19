@@ -66,6 +66,6 @@ export default function ParallaxField({ density = 80, color = 'rgba(16,185,129,0
     }
   }, [density, color])
 
-  // Place above background but beneath content layers
-  return <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
+  // Lift one layer above MatrixRain
+  return <canvas ref={canvasRef} className="fixed inset-0 z-10 pointer-events-none mix-blend-screen" />
 }
