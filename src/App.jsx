@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="bg-black text-emerald-100">
       <BootScreen />
-      <MatrixRain opacity={0.22} speed={80} color="#00ff88" />
+      <MatrixRain opacity={0.12} speed={120} color="#10b981" />
       <ParallaxField />
       <SectionTransition />
 
