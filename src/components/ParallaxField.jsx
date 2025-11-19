@@ -54,6 +54,7 @@ export default function ParallaxField({ density = 80, color = 'rgba(16,185,129,0
       mouse.current.y = e.clientY
     }
     window.addEventListener('mousemove', onMove)
+    window.addEventListener('resize', resize)
     resize()
     draw()
 
@@ -61,8 +62,10 @@ export default function ParallaxField({ density = 80, color = 'rgba(16,185,129,0
       mounted = false
       cancelAnimationFrame(raf.current)
       window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('resize', resize)
     }
   }, [density, color])
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 pointer-events-none" />
+  // Place above background but beneath content layers
+  return <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
 }
