@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const PRODUCTS = [
   { title: 'Soul Archetype', price: '$8', url: 'https://whop.com', label: 'Soul Archetype' },
@@ -43,29 +44,42 @@ export default function Products() {
   }
 
   return (
-    <section id="products" className="py-24 bg-black text-white border-t border-white/10">
+    <section id="products" className="py-28 bg-black text-emerald-100 border-t border-emerald-500/10 relative">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
-          <div className="lg:col-span-1 p-6 rounded-xl border border-white/10 bg-white/5">
-            <h3 className="text-2xl font-semibold">Free: Spiritual Cheat Codes</h3>
-            <p className="mt-2 text-white/70">Drop your email. Get the download. Deploy today.</p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-1 p-6 rounded-xl border border-emerald-500/15 bg-emerald-400/5 backdrop-blur-sm"
+          >
+            <h3 className="text-2xl font-semibold text-emerald-300">Free: Spiritual Cheat Codes</h3>
+            <p className="mt-2 text-emerald-200/75">Drop your email. Get the download. Deploy today.</p>
             <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
               <input type="email" required placeholder="you@example.com" value={email} onChange={(e)=>setEmail(e.target.value)} className="flex-1 px-3 py-2 rounded bg-white text-black focus:outline-none" />
-              <button type="submit" className="px-4 py-2 rounded bg-white text-black font-medium hover:bg-white/90">Get It</button>
+              <button type="submit" className="px-4 py-2 rounded bg-emerald-400 text-black font-medium hover:bg-emerald-300 transition-colors">Get It</button>
             </form>
             {status==='success' && <p className="mt-2 text-emerald-400 text-sm">Check your inbox. You’re in.</p>}
             {status==='error' && <p className="mt-2 text-red-400 text-sm">Something went wrong. Try again.</p>}
-          </div>
+          </motion.div>
 
           <div className="lg:col-span-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PRODUCTS.map((p, idx) => (
-              <div key={idx} className="p-6 rounded-xl border border-white/10 bg-white/5 flex flex-col">
-                <h4 className="text-lg font-medium">{p.title}</h4>
-                <p className="mt-1 text-white/70">{p.price}</p>
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className="p-6 rounded-xl border border-emerald-500/15 bg-emerald-400/5 hover:bg-emerald-400/10 transition-colors flex flex-col"
+              >
+                <h4 className="text-lg font-medium text-emerald-200">{p.title}</h4>
+                <p className="mt-1 text-emerald-200/70">{p.price}</p>
                 <div className="mt-auto">
-                  <button onClick={() => trackAndGo(p)} className="mt-4 w-full px-4 py-2 rounded bg-white text-black font-medium hover:bg-white/90">Buy Now</button>
+                  <button onClick={() => trackAndGo(p)} className="mt-4 w-full px-4 py-2 rounded bg-emerald-400 text-black font-medium hover:bg-emerald-300 transition-colors">Buy Now</button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
