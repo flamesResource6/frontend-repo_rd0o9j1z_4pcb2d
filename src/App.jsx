@@ -16,10 +16,9 @@ function App() {
   return (
     <div className="bg-black text-emerald-100">
       <BootScreen />
-      {/* Softer, slower, and lighter background rain */}
-      <MatrixRain opacity={0.06} speed={200} color="#10b981" />
-      {/* Slightly reduced particle intensity above the rain */}
-      <ParallaxField density={60} color="rgba(16,185,129,0.35)" />
+      {/* Make background layers clearly visible while keeping them tasteful */}
+      <MatrixRain opacity={0.12} speed={200} color="#10b981" />
+      <ParallaxField density={80} color="rgba(16,185,129,0.45)" />
       <SectionTransition />
 
       <Navbar />

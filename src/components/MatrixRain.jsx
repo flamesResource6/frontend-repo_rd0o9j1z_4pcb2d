@@ -42,7 +42,9 @@ export default function MatrixRain({ opacity = 0.12, speed = 50, color = '#10b98
       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
       ctx.save()
-      ctx.globalAlpha = 0.35 // softer glyphs
+      // Tie glyph opacity to the provided opacity prop so we can nudge visibility
+      const glyphAlpha = Math.min(0.85, Math.max(0.2, 0.3 + opacity * 4))
+      ctx.globalAlpha = glyphAlpha
       ctx.fillStyle = color
       ctx.font = `${fontSize}px monospace`
 
@@ -92,7 +94,7 @@ export default function MatrixRain({ opacity = 0.12, speed = 50, color = '#10b98
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 mix-blend-soft-light"
+      className="pointer-events-none fixed inset-0 z-0 mix-blend-screen"
       aria-hidden
     />
   )
